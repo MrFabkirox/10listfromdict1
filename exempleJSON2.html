@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>Exemple avec JSON et JQuery,10listfromdict1, exempleJSON2, </title>
+</head>
+<body>
+
+<script src="jquery.js"></script>
+
+<script>
+
+function remplirListe(txt) {
+        $("#sel").empty();
+	for (i in txt) {
+		var opt= document.createElement("option");
+		var mot= document.createTextNode(txt[i]);
+		opt.appendChild(mot);
+		$("#sel").append(opt);
+	}
+}
+
+function miseAjour() {
+	var txt= $("#filtre").val();
+	if (txt.length < 3) return;
+	$.ajax({url: "dico.php",
+                data : {debut: txt},
+                success: remplirListe});
+}
+</script>
+
+<h3>10listfromdict1, exempleJSON2</h3>
+
+<input type="text" id="filtre" name="filtre" onkeyup="miseAjour();"/>
+<select id="sel" style="width:40em;">
+</select>
+
+</body>
+
+</html>
